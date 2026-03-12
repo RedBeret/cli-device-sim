@@ -1,0 +1,19 @@
+services:
+  sim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "2222:2222"
+    volumes:
+      - ./data:/app/data
+    environment:
+      SIM_LOG_LEVEL: INFO
+    healthcheck:
+      test: ["CMD", "python", "-m", "cli_device_sim", "healthcheck", "--url", "http://127.0.0.1:8080/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 5s
+

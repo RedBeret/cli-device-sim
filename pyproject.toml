@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-device-sim"
+version = "0.1.0"
+description = "Synthetic SSH-accessible network device CLI simulator for local training."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+  {name = "RedBeret"},
+]
+keywords = [
+  "automation",
+  "cli",
+  "docker",
+  "networking",
+  "simulator",
+  "sqlite",
+  "ssh",
+  "training",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: System :: Networking",
+  "Topic :: Software Development :: Testing",
+  "Intended Audience :: Developers",
+]
+dependencies = [
+  "fastapi>=0.115,<1.0",
+  "paramiko>=3.5,<4.0",
+  "pydantic>=2.10,<3.0",
+  "pydantic-settings>=2.6,<3.0",
+  "typer>=0.16,<1.0",
+  "uvicorn>=0.34,<1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/RedBeret/cli-device-sim"
+Repository = "https://github.com/RedBeret/cli-device-sim"
+Documentation = "https://github.com/RedBeret/cli-device-sim/tree/main/docs"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9.0",
+]
+
+[project.scripts]
+cli-device-sim = "cli_device_sim.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
